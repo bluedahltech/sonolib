@@ -3,7 +3,7 @@ from django.apps import AppConfig
 
 class UsersAppConfig(AppConfig):
 
-    name = "django_quick_start.users"
+    name = "sonolib.users"
     verbose_name = "Users"
 
     def ready(self):

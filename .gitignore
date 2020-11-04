@@ -280,7 +280,7 @@ pip-selfcheck.json
 
 ### Project template
 
-django_quick_start/media/
+sonolib/media/
 
 .pytest_cache/
 

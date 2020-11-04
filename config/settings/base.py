@@ -4,12 +4,12 @@ Base settings to build other settings files upon.
 
 import environ
 
-ROOT_DIR = environ.Path(__file__) - 3  # (django_quick_start/config/settings/base.py - 3 = django_quick_start/)
-APPS_DIR = ROOT_DIR.path('django_quick_start')
+ROOT_DIR = environ.Path(__file__) - 3  # (sonolib/config/settings/base.py - 3 = sonolib/)
+APPS_DIR = ROOT_DIR.path('sonolib')
 
 env = environ.Env()
 
-READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default=False)
+READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default=True)
 if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env
     env.read_env(str(ROOT_DIR.path('.env')))
@@ -44,8 +44,8 @@ DATABASES = {
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 
-AWS_ACCESS_KEY_ID = 'YOUR_ACCESS_KEY_HERE'
-AWS_SECRET_ACCESS_KEY = 'YOUR_SECRET_ACCESS_KEY_HERE'
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_STORAGE_BUCKET_NAME = 'insert-your-bucket-name-here'
@@ -78,7 +78,8 @@ THIRD_PARTY_APPS = [
     'rest_framework',
 ]
 LOCAL_APPS = [
-    'django_quick_start.users.apps.UsersAppConfig',
+    'sonolib.users.apps.UsersAppConfig',
+    'sonolib.sounds.apps.SoundsConfig',
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -88,7 +89,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
 MIGRATION_MODULES = {
-    'sites': 'django_quick_start.contrib.sites.migrations'
+    'sites': 'sonolib.contrib.sites.migrations'
 }
 
 # AUTHENTICATION
@@ -250,9 +251,9 @@ ACCOUNT_EMAIL_REQUIRED = True
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_ADAPTER = 'django_quick_start.users.adapters.AccountAdapter'
+ACCOUNT_ADAPTER = 'sonolib.users.adapters.AccountAdapter'
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-SOCIALACCOUNT_ADAPTER = 'django_quick_start.users.adapters.SocialAccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'sonolib.users.adapters.SocialAccountAdapter'
 
 
 # Your stuff...

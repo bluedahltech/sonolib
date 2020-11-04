@@ -1,7 +1,7 @@
 import pytest
 
-from django_quick_start.users.forms import UserCreationForm
-from django_quick_start.users.tests.factories import UserFactory
+from sonolib.users.forms import UserCreationForm
+from sonolib.users.tests.factories import UserFactory
 
 pytestmark = pytest.mark.django_db
 
