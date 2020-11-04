@@ -48,8 +48,8 @@ AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_STORAGE_BUCKET_NAME = 'insert-your-bucket-name-here'
-AWS_S3_REGION_NAME = 'eu-west-2'
+AWS_STORAGE_BUCKET_NAME =  env('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
 
 # URLS
 # ------------------------------------------------------------------------------
@@ -79,8 +79,8 @@ THIRD_PARTY_APPS = [
 ]
 LOCAL_APPS = [
     'sonolib.users.apps.UsersAppConfig',
-    'sonolib.sounds.apps.SoundsConfig',
     # Your stuff: custom apps go here
+    'sonolib.sounds.apps.SoundsConfig',
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
