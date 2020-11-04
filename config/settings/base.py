@@ -39,9 +39,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///django_quick_start'),
+    'default': env.db('DATABASE_URL', default='postgres:///sonolib'),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
+
+
+AWS_ACCESS_KEY_ID = 'YOUR_ACCESS_KEY_HERE'
+AWS_SECRET_ACCESS_KEY = 'YOUR_SECRET_ACCESS_KEY_HERE'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_STORAGE_BUCKET_NAME = 'insert-your-bucket-name-here'
+AWS_S3_REGION_NAME = 'eu-west-2'
 
 # URLS
 # ------------------------------------------------------------------------------
