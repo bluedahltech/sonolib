@@ -14,6 +14,10 @@ urlpatterns = [
     ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
+    path(
+        "sounds/",
+        include("sonolib.sounds.urls", namespace="sounds"),
+    ),
     # User management
     path(
         "users/",

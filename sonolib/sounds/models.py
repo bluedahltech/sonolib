@@ -46,6 +46,7 @@ class Sound(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
     sound = models.FileField()
+    key = models.CharField(max_length=100)
 
 class Loop(models.Model):
     title = models.CharField(max_length=250)
@@ -58,6 +59,8 @@ class Loop(models.Model):
     instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
     loop_type = models.ForeignKey(LoopType, on_delete=models.CASCADE)
     loop = models.FileField()
+    key = models.CharField(max_length=100)
+    bpm = models.IntegerField()
 
 # SoundKit idea, need to map out further  
 # class SoundKit(models.Model):
