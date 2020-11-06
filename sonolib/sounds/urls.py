@@ -1,6 +1,6 @@
 from django.urls import path
 
-from sonolib.sounds.views import (
+from sounds.views import (
     sounds_json_view
 )
 

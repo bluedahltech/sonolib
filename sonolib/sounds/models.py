@@ -11,7 +11,7 @@ class Wavetable(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    wavetable = models.FileField()
+    file = models.FileField()
 
 class ImpulseResponse(models.Model):
     title = models.CharField(max_length=250)
@@ -20,7 +20,7 @@ class ImpulseResponse(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    impulse_response = models.FileField()
+    file = models.FileField()
 
 class LoopType(models.Model):
     title = models.CharField(max_length=250)
@@ -45,7 +45,7 @@ class Sound(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
-    sound = models.FileField()
+    file = models.FileField()
     key = models.CharField(max_length=100)
 
 class Loop(models.Model):
@@ -58,7 +58,7 @@ class Loop(models.Model):
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
     loop_type = models.ForeignKey(LoopType, on_delete=models.CASCADE)
-    loop = models.FileField()
+    file = models.FileField()
     key = models.CharField(max_length=100)
     bpm = models.IntegerField()
 
