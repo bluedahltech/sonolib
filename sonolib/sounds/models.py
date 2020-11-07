@@ -25,17 +25,14 @@ class ImpulseResponse(models.Model):
 class LoopType(models.Model):
     title = models.CharField(max_length=250)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Instrument(models.Model):
     title = models.CharField(max_length=250)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Genre(models.Model):
     title = models.CharField(max_length=250)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Sound(models.Model):
     title = models.CharField(max_length=250)
@@ -63,15 +60,17 @@ class Loop(models.Model):
     bpm = models.IntegerField()
 
 # SoundKit idea, need to map out further  
-# class SoundKit(models.Model):
-#     title = models.CharField(max_length=250)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     created_by = models.ForeignKey(User)
-#     sounds = models.ForeignKey(Sound)
 
-# class Note(models.Model):
-#     title = models.CharField(max_length=250)
+class KeyCode(models.Model):
+    title = models.CharField(max_length=250)
+    code = models.CharField(max_length=250)
 
-# class NoteSound(models.Model):
-#     sound = models.ForeignKey(Sound)
-#     note = models.ForeignKey(Note)
+class SoundKeyCode(models.Model):
+    sound = models.ForeignKey(Sound)
+    key_code = models.ForeignKey(KeyCode)
+
+class SoundKit(models.Model):
+    title = models.CharField(max_length=250)
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(User)
+    sound_key_code = models.ForeignKey(SoundKeyCode)
