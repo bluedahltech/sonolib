@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<form class="form-horizontal" method="post" action="{% url 'sounds:create_soundkit' %}">
+  {% csrf_token %}
+  <div style="margin-top: 24px;">
+
+    <h2>
+      Create Soundkit
+    </h2>
+
+    <div class="row" style="margin-top: 12px;">
+      <div class="col">
+        <input id="title" class="form-control" type="text" name="title" value="" placeholder="Title" />
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 24px;">
+      <div class="col">
+        <h5>
+          Map Keyboard to Sounds
+        </h5>
+        {% for key_code in key_codes %}
+          <div class="row form-group" style="margin: 24px 0;">
+            <div class="col">
+              {{key_code.title}}
+              {{key_code.code}}
+            </div>
+
+            <div class="col">
+              <select class="form-control" placeholder="Select Sound" name="keycode_{{key_code.id}}" id="{{key_code.id}}">
+                <option value="" disabled selected>Select Sound</option>
+                {% for sound in sounds %}
+                  <option value="{{sound.uuid}}">{{sound.title}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        {% endfor %}
+       </div>
+    </div>
+    <p>
+      <input class="btn btn-primary" type="submit" name="submit" value="Submit" />
+    </p>
+  </div>
+</form>
+{% endblock %}

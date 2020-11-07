@@ -38,7 +38,7 @@ def migrate_csvs(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('clients', '0002_auto_20201106_0036'),
+        ('sounds', '0001_initial'),
     ]
 
     operations = [

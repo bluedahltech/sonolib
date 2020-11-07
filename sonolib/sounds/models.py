@@ -59,18 +59,17 @@ class Loop(models.Model):
     key = models.CharField(max_length=100)
     bpm = models.IntegerField()
 
-# SoundKit idea, need to map out further  
 
 class KeyCode(models.Model):
     title = models.CharField(max_length=250)
     code = models.CharField(max_length=250)
 
 class SoundKeyCode(models.Model):
-    sound = models.ForeignKey(Sound)
-    key_code = models.ForeignKey(KeyCode)
+    sound = models.ForeignKey(Sound, on_delete=models.CASCADE)
+    key_code = models.ForeignKey(KeyCode, on_delete=models.CASCADE)
 
 class SoundKit(models.Model):
     title = models.CharField(max_length=250)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User)
-    sound_key_code = models.ForeignKey(SoundKeyCode)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    sound_key_codes = models.ManyToManyField('SoundKeyCode')
