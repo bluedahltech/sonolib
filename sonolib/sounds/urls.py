@@ -2,7 +2,7 @@ from django.urls import path, include
 
 import sounds.views as views
 from sounds.models import (Wavetable, ImpulseResponse, 
-    LoopType, Sound, Loop, SoundKit, SoundKeyCode)
+    LoopType, Sound, Loop, SoundKit, SoundKeyCode, KeyCode)
 from rest_framework import serializers, viewsets, routers
 
 class WavetableSerializer(serializers.HyperlinkedModelSerializer):
@@ -23,7 +23,15 @@ class SoundSerializer(serializers.HyperlinkedModelSerializer):
         model = Sound
         fields = ['title', 'file', 'uuid']
 
+class KeyCodeSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = KeyCode
+        fields = ['title', 'code']
+
 class SoundKeyCodeSerializer(serializers.ModelSerializer):
+    sound = SoundSerializer(read_only=True)
+    key_code = KeyCodeSerializer(read_only=True)
     class Meta:
         model = SoundKeyCode
         fields = ['sound','key_code']
@@ -34,11 +42,16 @@ class SoundKitSerializer(serializers.ModelSerializer):
         model = SoundKit
         fields = ['title', 'sound_key_codes']
 
-class LoopSerializer(serializers.HyperlinkedModelSerializer):
+class LoopTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LoopType
+        fields = ['title']
 
+class LoopSerializer(serializers.HyperlinkedModelSerializer):
+    loop_type = LoopTypeSerializer(read_only=True)
     class Meta:
         model = Loop
-        fields = ['title', 'file', 'uuid']
+        fields = ['title', 'file', 'uuid', 'bpm', 'loop_type']
 
 class SoundKitViewSet(viewsets.ModelViewSet):
     queryset = SoundKit.objects.all()
@@ -47,7 +60,6 @@ class SoundKitViewSet(viewsets.ModelViewSet):
 class WavetableViewSet(viewsets.ModelViewSet):
     queryset = Wavetable.objects.all()
     serializer_class = WavetableSerializer
-
 
 class ImpulseResponseViewSet(viewsets.ModelViewSet):
     queryset = ImpulseResponse.objects.all()
