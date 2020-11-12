@@ -82,4 +82,5 @@ class FrequencyKit(models.Model):
     title = models.CharField(max_length=250)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    sound_key_codes = models.ManyToManyField('FrequencyKeyCode')
+    sound = models.ForeignKey(Sound, on_delete=models.CASCADE, blank=True, null=True)
+    frequency_key_codes = models.ManyToManyField('FrequencyKeyCode')

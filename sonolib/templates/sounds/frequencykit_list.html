@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+  <h2>Soundkits</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for soundkit in object_list %}
+        <tr>
+          <td> <a href="{% url 'sounds:view_soundkit' soundkit.id %}">{{ soundkit.title }}</a></td>
+          
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <hr>
+  <a class="btn btn-primary" href="{% url 'sounds:create_soundkit' %}" role="button">Create</a>
+</div>
+
+{% endblock %}
