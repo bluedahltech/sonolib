@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<form class="form-horizontal" method="post" action="{% url 'sounds:create_soundkit' %}">
+<form class="form-horizontal" method="post" action="{% url 'sounds:create_frequencykit' %}">
   {% csrf_token %}
   <div style="margin-top: 24px;">
 
@@ -19,13 +19,7 @@
         <h5>
           Map Frequencies to Keys
         </h5>
-
-        <select class="form-control" placeholder="Select Sound" name="sound" >
-          <option value="" disabled selected>Select Sound (optional)</option>
-          {% for sound in sounds %}
-            <option value="{{sound.uuid}}">{{sound.title}}</option>
-          {% endfor %}
-        </select>
+        
         <a href="https://github.com/darrendahl/sono.ly/blob/master/frequency-chart.png" target="_blank">See frequency chart</a>
         {% for key_code in key_codes %}
           <div class="row form-group" style="margin: 24px 0;">
@@ -34,7 +28,7 @@
               {{key_code.code}}
             </div>
             <div class="col">
-              <input type="number" name="keycode_{{key_code.id}}" /> 
+              <input type="number" name="keycode_{{key_code.id}}" step="any" /> 
             </div>
           </div>
         {% endfor %}

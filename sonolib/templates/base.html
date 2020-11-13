@@ -49,10 +49,10 @@
             
             {% if request.user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'sounds:soundkit' %}">Multi-Sound Kits</a>
+                <a class="nav-link" href="{% url 'sounds:soundkit' %}">Sound Kits</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'sounds:frequencykit' %}">Single-Sound Kits</a>
+                <a class="nav-link" href="{% url 'sounds:frequencykit' %}">Frequency Kits</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'sounds:sound' %}">Sounds</a>
@@ -93,7 +93,8 @@
       {% endif %}
 
       {% block content %}
-        <h1>Sound Library</h1>
+        <a href="https://academo.org/demos/spectrum-analyzer/">Spectrum Analyzer to determine base frequency of sounds</a> 
+        <!-- <h1>Sound Library</h1> -->
       {% endblock content %}
 
     </div> <!-- /container -->

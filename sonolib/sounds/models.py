@@ -41,9 +41,10 @@ class Sound(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
+    instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE, blank=True, null=True)
     file = models.FileField()
-    key = models.CharField(max_length=100)
+    key = models.CharField(max_length=100, blank=True, null=True)
+    base_frequency = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True, default=440)
 
 class Loop(models.Model):
     title = models.CharField(max_length=250)
@@ -52,11 +53,11 @@ class Loop(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
-    instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE, blank=True, null=True)
+    instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE, blank=True, null=True)
     loop_type = models.ForeignKey(LoopType, on_delete=models.CASCADE)
     file = models.FileField()
-    key = models.CharField(max_length=100)
+    key = models.CharField(max_length=100, blank=True, null=True)
     bpm = models.IntegerField()
 
 
@@ -82,5 +83,4 @@ class FrequencyKit(models.Model):
     title = models.CharField(max_length=250)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    sound = models.ForeignKey(Sound, on_delete=models.CASCADE, blank=True, null=True)
     frequency_key_codes = models.ManyToManyField('FrequencyKeyCode')

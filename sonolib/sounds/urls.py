@@ -3,7 +3,7 @@ from django.urls import path, include
 import sounds.views as views
 from sounds.models import (Wavetable, ImpulseResponse, 
     LoopType, Sound, Loop, SoundKit, SoundKeyCode, KeyCode,
-    FrequencyKit)
+    FrequencyKit, FrequencyKeyCode)
 from rest_framework import serializers, viewsets, routers
 
 class WavetableSerializer(serializers.HyperlinkedModelSerializer):
@@ -22,7 +22,7 @@ class SoundSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Sound
-        fields = ['title', 'file', 'uuid']
+        fields = ['title', 'file', 'uuid', 'base_frequency']
 
 class KeyCodeSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -40,15 +40,14 @@ class SoundKeyCodeSerializer(serializers.ModelSerializer):
 class FrequencyKeyCodeSerializer(serializers.ModelSerializer):
     key_code = KeyCodeSerializer(read_only=True)
     class Meta:
-        model = SoundKeyCode
+        model = FrequencyKeyCode
         fields = ['frequency','key_code']
 
 class FrequencyKitSerializer(serializers.ModelSerializer):
     frequency_key_codes = FrequencyKeyCodeSerializer(read_only=True, many=True)
-    sound = SoundSerializer(read_only=True)
     class Meta:
         model = SoundKit
-        fields = ['id', 'title', 'sound_key_codes']
+        fields = ['id', 'title', 'frequency_key_codes']
 
 class SoundKitSerializer(serializers.ModelSerializer):
     sound_key_codes = SoundKeyCodeSerializer(read_only=True, many=True)
@@ -109,5 +108,7 @@ urlpatterns = [
     path("frequencykit", view=views.FrequencykitList.as_view(), name="frequencykit"),
     path("frequencykit/<int:pk>", view=views.FrequencykitDetail.as_view(), name="view_frequencykit"),
     path("frequencykit/create", view=views.FrequencykitCreate.as_view(), name="create_frequencykit"),
-    path("sound", view=views.sound_list_view, name="sound"),
+    path("sound", view=views.SoundList.as_view(), name="sound"),
+    path("sound/<pk>", view=views.SoundDetail.as_view(), name="view_sound"),
+    path("sound/create", view=views.SoundCreate.as_view(), name="create_sound"),
 ]

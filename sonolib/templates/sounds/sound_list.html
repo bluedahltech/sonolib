@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+  <h2>Sounds</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for sound in object_list %}
+        <tr>
+          <td> <a href="{% url 'sounds:view_sound' sound.uuid|stringformat:'s' %}">{{ sound.title }}</a></td>
+          
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <hr>
+  {%comment %}
+  <!-- <a class="btn btn-primary" href="{% url 'sounds:create_sound' %}" role="button">Create</a>
+  <a class="btn btn-primary" href="{% url 'sounds:create_loop' %}" role="button">Create</a>
+  <a class="btn btn-primary" href="{% url 'sounds:create_impulse_response' %}" role="button">Create</a>
+  <a class="btn btn-primary" href="{% url 'sounds:create_wavetable' %}" role="button">Create</a> -->
+  {% endcomment %}
+</div>
+
+{% endblock %}

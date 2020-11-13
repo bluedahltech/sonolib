@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import (Wavetable, ImpulseResponse, LoopType,
-                Instrument, Genre, Sound, Loop)
+                Instrument, Genre, Sound, Loop, FrequencyKit)
 
 # Register your models here.
 @admin.register(Wavetable)
@@ -37,4 +37,9 @@ class SoundAdmin(admin.ModelAdmin):
 @admin.register(Loop)
 class LoopAdmin(admin.ModelAdmin):
     list_display = ["title", "uuid"]
+    pass
+
+@admin.register(FrequencyKit)
+class FrequencyKitAdmin(admin.ModelAdmin):
+    list_display = ["title", "id"]
     pass

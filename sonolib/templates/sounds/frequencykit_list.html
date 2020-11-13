@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div>
-  <h2>Soundkits</h2>
+  <h2>Frequencykits</h2>
 
   <table class="table table-striped">
     <thead>
@@ -10,16 +10,16 @@
       </tr>
     </thead>
     <tbody>
-      {% for soundkit in object_list %}
+      {% for frequencykit in object_list %}
         <tr>
-          <td> <a href="{% url 'sounds:view_soundkit' soundkit.id %}">{{ soundkit.title }}</a></td>
+          <td> <a href="{% url 'sounds:view_frequencykit' frequencykit.id %}">{{ frequencykit.title }}</a></td>
           
         </tr>
       {% endfor %}
     </tbody>
   </table>
   <hr>
-  <a class="btn btn-primary" href="{% url 'sounds:create_soundkit' %}" role="button">Create</a>
+  <a class="btn btn-primary" href="{% url 'sounds:create_frequencykit' %}" role="button">Create</a>
 </div>
 
 {% endblock %}
