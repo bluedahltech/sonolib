@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div>
-  <h2>Soundkit {{frequencykit.title}}</h2>
+  <h2>Frequencykit {{frequencykit.title}}</h2>
 
   <table class="table table-striped">
     <thead>
@@ -11,13 +11,15 @@
       </tr>
     </thead>
     <tbody>
-      {% for skc in soundkit.frequency_key_codes.all %}
+
+      {% for skc in frequencykit.frequency_key_codes.all %}
         <tr>
-          <td>{{ skc.key_code.code }}</td>
+          <td>{{ skc.key_code.title }} {{ skc.key_code.code }}</td>
           <td>{{ skc.frequency }}</td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
   <hr>
-  <a class="btn btn-primary" href="{% url 'sounds:frequencykit' %}" role="button">View List
+  <a class="btn btn-primary" href="{% url 'sounds:frequencykit' %}" role="button">Update Kit</a>
+{% endblock %}
