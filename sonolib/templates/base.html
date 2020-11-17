@@ -13,8 +13,9 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
 
-    <!-- <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}"> -->
-
+    {% comment %}
+    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
+    {% endcomment %}
     {% block css %}
     
     <!-- Latest compiled and minified Bootstrap 4.1.1 CSS -->
@@ -24,9 +25,9 @@
     <!-- Your stuff: Third-party CSS libraries go here -->
     
     <!-- This file stores project-specific CSS -->
-    
-    <!-- <link href="{% static 'css/project.css' %}" rel="stylesheet"> -->
-    
+    {% comment %}
+    <link href="{% static 'css/project.css' %}" rel="stylesheet">
+    {% endcomment %}
     
     {% endblock %}
 
@@ -115,9 +116,9 @@
       
 
       <!-- place project specific Javascript in this file -->
-      
-      <!-- <script src="{% static 'js/project.js' %}"></script> -->
-      
+      {% comment %}
+      <script src="{% static 'js/project.js' %}"></script>
+      {% endcomment %}
 
     {% endblock javascript %}
   </body>
