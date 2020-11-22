@@ -66,27 +66,27 @@ class LoopSerializer(serializers.HyperlinkedModelSerializer):
         model = Loop
         fields = ['title', 'file', 'uuid', 'bpm', 'loop_type']
 
-class FrequencyKitViewSet(viewsets.ModelViewSet):
+class FrequencyKitViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = FrequencyKit.objects.all()
     serializer_class = FrequencyKitSerializer
 
-class SoundKitViewSet(viewsets.ModelViewSet):
+class SoundKitViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = SoundKit.objects.all()
     serializer_class = SoundKitSerializer
 
-class WavetableViewSet(viewsets.ModelViewSet):
+class WavetableViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Wavetable.objects.all()
     serializer_class = WavetableSerializer
 
-class ImpulseResponseViewSet(viewsets.ModelViewSet):
+class ImpulseResponseViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = ImpulseResponse.objects.all()
     serializer_class = ImpulseResponseSerializer
 
-class SoundViewSet(viewsets.ModelViewSet):
+class SoundViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Sound.objects.all()
     serializer_class = SoundSerializer
 
-class LoopViewSet(viewsets.ModelViewSet):
+class LoopViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Loop.objects.all()
     serializer_class = LoopSerializer
 
