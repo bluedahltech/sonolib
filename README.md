@@ -1,9 +1,8 @@
-# Deploy a Django App on Render
+# Sonolib
 
-This is a sample [Django](https://www.djangoproject.com/) app bootstrapped using [cookiecutter-django](https://github.com/pydanny/cookiecutter-django) and set up to work with PostgreQL on Render.
+Sonolib is a public api for sounds meant to be used for web audio instruments.
 
-The sample app is deployed at https://django.onrender.com.
+This django application is meant for managing, uploading, creating sounds and kits that have specific data models that can be consumed by online instruments.
 
-## Deployment on Render
+We have loops, impulse responses, single sounds, frequency kits, multi sound kits, and wavetables. If you wish to add to the database, send a message and I can set you up with an account. Otherwise you can use the read endpoints however you wish!
 
-See the guide at https://render.com/docs/deploy-django.
